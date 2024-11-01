@@ -63,7 +63,8 @@ export default function CopyButtonGroup({ fullWidth }: CopyButtonGroupProps) {
           })
           .catch(function (error) {
             console.error("oops, something went wrong!", error);
-            toast.error("Failed to copy image");
+            toast.error(error);
+            toast.error(error?.message);
           });
       }
     }
