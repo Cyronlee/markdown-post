@@ -9,6 +9,7 @@ import {
 import { toast } from "sonner";
 import * as htmlToImage from "html-to-image";
 import { Download } from "lucide-react";
+import { saveAs } from "file-saver";
 
 import { ChevronDownIcon } from "@/components/icons.tsx";
 import { isSafari } from "@/lib/is-safari.ts";
@@ -43,28 +44,11 @@ export default function DownloadButtonGroup({
         position: "top-center",
       });
     } else if (selectedOption.has("image")) {
-      const element = document.getElementById("markdown-body");
-      if (element) {
-        try {
-          const dataUrl = await htmlToImage.toPng(element);
-
-          if (isSafari) {
-            await new Promise((resolve) => setTimeout(resolve, 1000));
-          }
-
-          const link = document.createElement("a");
-          link.download = "markdown-post.png";
-          link.href = dataUrl;
-          link.click();
-          toast.success("Image saved", {
-            duration: 4000,
-            position: "top-center",
-          });
-        } catch (error) {
-          console.error("oops, something went wrong!", error);
-          toast.error("Failed to download image");
-        }
-      }
+      htmlToImage
+        .toBlob(document.getElementById("markdown-body") as HTMLElement)
+        .then(function (blob) {
+          saveAs(blob, "markdown-post.png");
+        });
     }
   };
 
