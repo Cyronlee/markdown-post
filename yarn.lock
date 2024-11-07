@@ -797,7 +797,7 @@
     "@react-stately/utils" "3.10.1"
     react-remove-scroll "^2.5.6"
 
-"@nextui-org/popover@2.1.29":
+"@nextui-org/popover@2.1.29", "@nextui-org/popover@^2.1.29":
   version "2.1.29"
   resolved "https://registry.yarnpkg.com/@nextui-org/popover/-/popover-2.1.29.tgz#2972ff0f0ebc73afc5ec934bf026cdaba72d99fd"
   integrity sha512-qGjMnAQVHQNfG571h9Tah2MXPs5mhxcTIj4TuBgwPzQTWXjjeffaHV3FlHdg5PxjTpNZOdDfrg0eRhDqIjKocQ==
@@ -881,6 +881,22 @@
   version "2.0.8"
   resolved "https://registry.yarnpkg.com/@nextui-org/shared-utils/-/shared-utils-2.0.8.tgz#6e6e71a067c273581839c2226fd9fb4e1e3a3410"
   integrity sha512-ZEtoMPXS+IjT8GvpJTS9IWDnT1JNCKV+NDqqgysAf1niJmOFLyJgl6dh/9n4ufcGf1GbSEQN+VhJasEw7ajYGQ==
+
+"@nextui-org/slider@^2.2.17":
+  version "2.2.17"
+  resolved "https://registry.yarnpkg.com/@nextui-org/slider/-/slider-2.2.17.tgz#f40b7a04d272a8fc191d52b27887861fd2c75d39"
+  integrity sha512-MgeJv3X+bT7Bw+LK1zba4vToOUzv8lCvDuGe0U5suJy1AKGN6uGDgSAxpIZhCYNWsuNRsopwdvsGtyeIjOEStA==
+  dependencies:
+    "@nextui-org/react-utils" "2.0.17"
+    "@nextui-org/shared-utils" "2.0.8"
+    "@nextui-org/tooltip" "2.0.41"
+    "@react-aria/focus" "3.17.1"
+    "@react-aria/i18n" "3.11.1"
+    "@react-aria/interactions" "3.21.3"
+    "@react-aria/slider" "3.7.8"
+    "@react-aria/utils" "3.24.1"
+    "@react-aria/visually-hidden" "3.8.12"
+    "@react-stately/slider" "3.5.4"
 
 "@nextui-org/snippet@2.0.43":
   version "2.0.43"
@@ -1352,6 +1368,21 @@
     "@react-types/shared" "^3.25.0"
     "@swc/helpers" "^0.5.0"
 
+"@react-aria/slider@3.7.8":
+  version "3.7.8"
+  resolved "https://registry.yarnpkg.com/@react-aria/slider/-/slider-3.7.8.tgz#6f2109527e0ebfaa1aaf46fce2460549d5550e1b"
+  integrity sha512-MYvPcM0K8jxEJJicUK2+WxUkBIM/mquBxOTOSSIL3CszA80nXIGVnLlCUnQV3LOUzpWtabbWaZokSPtGgOgQOw==
+  dependencies:
+    "@react-aria/focus" "^3.17.1"
+    "@react-aria/i18n" "^3.11.1"
+    "@react-aria/interactions" "^3.21.3"
+    "@react-aria/label" "^3.7.8"
+    "@react-aria/utils" "^3.24.1"
+    "@react-stately/slider" "^3.5.4"
+    "@react-types/shared" "^3.23.1"
+    "@react-types/slider" "^3.7.3"
+    "@swc/helpers" "^0.5.0"
+
 "@react-aria/ssr@3.9.4":
   version "3.9.4"
   resolved "https://registry.yarnpkg.com/@react-aria/ssr/-/ssr-3.9.4.tgz#9da8b10342c156e816dbfa4c9e713b21f274d7ab"
@@ -1561,6 +1592,26 @@
     "@react-types/shared" "^3.25.0"
     "@swc/helpers" "^0.5.0"
 
+"@react-stately/slider@3.5.4":
+  version "3.5.4"
+  resolved "https://registry.yarnpkg.com/@react-stately/slider/-/slider-3.5.4.tgz#f8c1b5133769380348fa1e8a7a513ebbd88a8355"
+  integrity sha512-Jsf7K17dr93lkNKL9ij8HUcoM1sPbq8TvmibD6DhrK9If2lje+OOL8y4n4qreUnfMT56HCAeS9wCO3fg3eMyrw==
+  dependencies:
+    "@react-stately/utils" "^3.10.1"
+    "@react-types/shared" "^3.23.1"
+    "@react-types/slider" "^3.7.3"
+    "@swc/helpers" "^0.5.0"
+
+"@react-stately/slider@^3.5.4":
+  version "3.5.8"
+  resolved "https://registry.yarnpkg.com/@react-stately/slider/-/slider-3.5.8.tgz#b5370f2bc0b8833a191b9ce1e0d48e49d4b44972"
+  integrity sha512-EDgbrxMq1w3+XTN72MGl3YtAG/j65EYX1Uc3Fh56K00+inJbTdRWyYTrb3NA310fXCd0WFBbzExuH2ohlKQycg==
+  dependencies:
+    "@react-stately/utils" "^3.10.4"
+    "@react-types/shared" "^3.25.0"
+    "@react-types/slider" "^3.7.6"
+    "@swc/helpers" "^0.5.0"
+
 "@react-stately/toggle@3.7.4":
   version "3.7.4"
   resolved "https://registry.yarnpkg.com/@react-stately/toggle/-/toggle-3.7.4.tgz#3345b5c939db96305af7c22b73577db5536220ab"
@@ -1729,6 +1780,13 @@
   version "3.25.0"
   resolved "https://registry.yarnpkg.com/@react-types/shared/-/shared-3.25.0.tgz#7223baf72256e918a3c29081bb1ecc6fad4fbf58"
   integrity sha512-OZSyhzU6vTdW3eV/mz5i6hQwQUhkRs7xwY2d1aqPvTdMe0+2cY7Fwp45PAiwYLEj73i9ro2FxF9qC4DvHGSCgQ==
+
+"@react-types/slider@^3.7.3", "@react-types/slider@^3.7.6":
+  version "3.7.6"
+  resolved "https://registry.yarnpkg.com/@react-types/slider/-/slider-3.7.6.tgz#4196b2bc98902b36de6de31a748d04b76770d228"
+  integrity sha512-z72wnEzSge6qTD9TUoUPp1A4j4jXk/MVii6rGE78XeE/Pq7HyyjU5bCagryMr9PC9MKa/oTiHcshKqWBDf57GA==
+  dependencies:
+    "@react-types/shared" "^3.25.0"
 
 "@react-types/switch@^3.5.3":
   version "3.5.6"

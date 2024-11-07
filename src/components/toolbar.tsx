@@ -3,16 +3,23 @@ import { Select, SelectItem } from "@nextui-org/select";
 import CopyButtonGroup from "./copy-button-group.tsx";
 import DownloadButtonGroup from "./download-button-group.tsx";
 import { useTranslation } from "react-i18next";
+import LayoutSettingMenu, {
+  LayoutSetting,
+} from "@/components/layout-setting-menu.tsx";
 
 type ToolbarProps = {
   selectedStyle: string;
   setSelectedStyle: React.Dispatch<React.SetStateAction<string>>;
+  layoutSetting: LayoutSetting;
+  setLayoutSetting: React.Dispatch<React.SetStateAction<LayoutSetting>>;
   markdownStyles: { name: string }[];
 };
 
 const Toolbar: React.FC<ToolbarProps> = ({
   selectedStyle,
   setSelectedStyle,
+  layoutSetting,
+  setLayoutSetting,
   markdownStyles,
 }) => {
   const { t } = useTranslation();
@@ -31,6 +38,10 @@ const Toolbar: React.FC<ToolbarProps> = ({
           </SelectItem>
         ))}
       </Select>
+      <LayoutSettingMenu
+        layoutSetting={layoutSetting}
+        setLayoutSetting={setLayoutSetting}
+      ></LayoutSettingMenu>
       <div className="hidden md:flex flex-row gap-4 items-center">
         <CopyButtonGroup />
         <DownloadButtonGroup />

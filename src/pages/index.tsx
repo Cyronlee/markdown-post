@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Select, SelectItem } from "@nextui-org/select";
 import { Marked } from "marked";
 import { markedHighlight } from "marked-highlight";
 import markedKatex from "marked-katex-extension";
@@ -14,7 +15,13 @@ import { TypewriterHero } from "@/components/typewriter-hero";
 import { MarkdownEditor } from "@/components/markdown-editor.tsx";
 import welcomeMarkdownZh from "@/data/welcome-zh.md?raw";
 import welcomeMarkdownEn from "@/data/welcome-en.md?raw";
+import CopyButtonGroup from "@/components/copy-button-group.tsx";
+import DownloadButtonGroup from "@/components/download-button-group.tsx";
 import Toolbar from "@/components/toolbar.tsx";
+import {
+  defaultLayoutSetting,
+  LayoutSetting,
+} from "@/components/layout-setting-menu.tsx";
 
 // Move marked configuration to a separate constant
 const markedInstance = new Marked(
@@ -36,8 +43,11 @@ const markedInstance = new Marked(
 );
 
 // Helper functions
-const wrapWithContainer = (htmlString: string) => {
-  return `<div style="margin: 0; padding: 32px; background-color: #e5e5e5">
+const wrapWithContainer = (
+  htmlString: string,
+  layoutSetting: LayoutSetting,
+) => {
+  return `<div style="margin: 0; padding: ${layoutSetting.containerPadding}px; background-color: ${layoutSetting.containerBgColor}">
       <div class="article" style="max-width: 960px;margin: 0 auto;">${htmlString}</div>
     </div>`;
 };
@@ -46,6 +56,8 @@ export default function IndexPage() {
   const { i18n, t } = useTranslation();
 
   const [markdown, setMarkdown] = useState(welcomeMarkdownZh);
+  const [layoutSetting, setLayoutSetting] =
+    useState<LayoutSetting>(defaultLayoutSetting);
   const [isModified, setIsModified] = useState(false);
 
   const [html, setHtml] = useState("");
@@ -64,11 +76,13 @@ export default function IndexPage() {
     const parseMarkdown = async () => {
       const parsedHTML = await markedInstance.parse(markdown);
 
-      setHtml(wrapWithContainer(replaceImgSrc(parsedHTML)));
+      console.log(parsedHTML);
+
+      setHtml(wrapWithContainer(replaceImgSrc(parsedHTML), layoutSetting));
     };
 
     parseMarkdown();
-  }, [markdown]);
+  }, [markdown, layoutSetting]);
 
   // Apply inline styles
   useEffect(() => {
@@ -125,9 +139,11 @@ export default function IndexPage() {
     <DefaultLayout>
       <TypewriterHero />
       <Toolbar
-        markdownStyles={markdownStyles}
         selectedStyle={selectedStyle}
         setSelectedStyle={setSelectedStyle}
+        layoutSetting={layoutSetting}
+        setLayoutSetting={setLayoutSetting}
+        markdownStyles={markdownStyles}
       />
       <ResizableSplitPane
         initialLeftWidth={40}
