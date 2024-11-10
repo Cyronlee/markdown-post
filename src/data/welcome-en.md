@@ -28,6 +28,7 @@ more.
 
 - 💡 **Simple to Use:** Real-time preview, what you see is what you get.
 - 🏞️ **Image Upload:** Paste images, automatically generate image links.
+- 🧮 **Math Formula:** Support for $\LaTeX$ math formula.
 - 🎨 **Multiple Themes:** Continuously updated to meet different layout needs.
 - 📧 **Quick Sharing:** One-click copy, ready to publish on multiple platforms.
 - 📄 **Auto-Adapt:** Adapts to email window widths for a more attractive display.
@@ -37,4 +38,4 @@ more.
 ## Feedback
 
 Feel free to share your ideas and suggestions on [Github Issue](https://github.com/Cyronlee/markdown-post/issues). Your
-feedback will make **MarkdownPost** better! 
+feedback will make **MarkdownPost** better!
