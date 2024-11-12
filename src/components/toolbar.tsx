@@ -41,7 +41,7 @@ const Toolbar: React.FC<ToolbarProps> = ({
       <LayoutSettingMenu
         layoutSetting={layoutSetting}
         setLayoutSetting={setLayoutSetting}
-      ></LayoutSettingMenu>
+      />
       <div className="hidden md:flex flex-row gap-4 items-center">
         <CopyButtonGroup />
         <DownloadButtonGroup />

@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Select, SelectItem } from "@nextui-org/select";
 import { Marked } from "marked";
 import { markedHighlight } from "marked-highlight";
 import markedKatex from "marked-katex-extension";
@@ -15,8 +14,6 @@ import { TypewriterHero } from "@/components/typewriter-hero";
 import { MarkdownEditor } from "@/components/markdown-editor.tsx";
 import welcomeMarkdownZh from "@/data/welcome-zh.md?raw";
 import welcomeMarkdownEn from "@/data/welcome-en.md?raw";
-import CopyButtonGroup from "@/components/copy-button-group.tsx";
-import DownloadButtonGroup from "@/components/download-button-group.tsx";
 import Toolbar from "@/components/toolbar.tsx";
 import {
   defaultLayoutSetting,
