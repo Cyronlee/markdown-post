@@ -14,7 +14,7 @@ import { TypewriterHero } from "@/components/typewriter-hero";
 import { MarkdownEditor } from "@/components/markdown-editor.tsx";
 import welcomeMarkdownZh from "@/data/welcome-zh.md?raw";
 import welcomeMarkdownEn from "@/data/welcome-en.md?raw";
-import Toolbar from "@/components/toolbar.tsx";
+import Toolbar from "@/components/toolbar/toolbar.tsx";
 import layoutStyle from "@/styles/layout.css?raw";
 
 // Move marked configuration to a separate constant

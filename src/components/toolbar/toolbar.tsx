@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import CopyButtonGroup from "./copy-button-group.tsx";
 import DownloadButtonGroup from "./download-button-group.tsx";
 
-import LayoutSettingMenu from "@/components/layout-setting-menu.tsx";
+import StyleSettingPopover from "@/components/toolbar/style-setting-popover.tsx";
 
 type ToolbarProps = {
   selectedStyle: string;
@@ -34,7 +34,7 @@ const Toolbar: React.FC<ToolbarProps> = ({
           </SelectItem>
         ))}
       </Select>
-      <LayoutSettingMenu />
+      <StyleSettingPopover />
       <div className="hidden md:flex flex-row gap-4 items-center">
         <CopyButtonGroup />
         <DownloadButtonGroup />

@@ -3,7 +3,7 @@ import { Button, ButtonGroup } from "@nextui-org/button";
 import { Palette } from "lucide-react";
 import { Popover, PopoverTrigger } from "@nextui-org/popover";
 
-import { StyleSettingSection } from "@/components/style-setting-section.tsx";
+import { StyleSettingPopoverContent } from "@/components/toolbar/style-setting-popover-content.tsx";
 
 export interface LayoutSetting {
   containerEnabled: boolean;
@@ -13,7 +13,7 @@ export interface LayoutSetting {
   articleBgColor: string;
 }
 
-const LayoutSettingMenu = () => {
+const StyleSettingPopover = () => {
   return (
     <ButtonGroup variant="flat">
       <Popover
@@ -28,10 +28,10 @@ const LayoutSettingMenu = () => {
             user-defined
           </Button>
         </PopoverTrigger>
-        <StyleSettingSection />
+        <StyleSettingPopoverContent />
       </Popover>
     </ButtonGroup>
   );
 };
 
-export default LayoutSettingMenu;
+export default StyleSettingPopover;

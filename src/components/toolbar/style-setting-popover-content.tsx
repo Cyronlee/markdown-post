@@ -10,7 +10,7 @@ const ColorBox = ({ color }: { color: string }) => (
   />
 );
 
-export const StyleSettingSection = () => (
+export const StyleSettingPopoverContent = () => (
   <PopoverContent className="w-[360px]">
     {(titleProps) => (
       <div className="px-1 py-2 w-full">
