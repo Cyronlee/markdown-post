@@ -13,23 +13,7 @@ export interface LayoutSetting {
   articleBgColor: string;
 }
 
-export const defaultLayoutSetting: LayoutSetting = {
-  containerEnabled: true,
-  containerPadding: 24,
-  containerBgColor: "#e5e5e5",
-  articlePadding: 24,
-  articleBgColor: "#333",
-};
-
-type LayoutSettingProps = {
-  layoutSetting: LayoutSetting;
-  setLayoutSetting: React.Dispatch<React.SetStateAction<LayoutSetting>>;
-};
-
-const LayoutSettingMenu = ({
-  layoutSetting,
-  setLayoutSetting,
-}: LayoutSettingProps) => {
+const LayoutSettingMenu = () => {
   return (
     <ButtonGroup variant="flat">
       <Popover
@@ -44,10 +28,7 @@ const LayoutSettingMenu = ({
             user-defined
           </Button>
         </PopoverTrigger>
-        <StyleSettingSection
-          layoutSetting={layoutSetting}
-          setLayoutSetting={setLayoutSetting}
-        />
+        <StyleSettingSection />
       </Popover>
     </ButtonGroup>
   );
