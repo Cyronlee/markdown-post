@@ -15,7 +15,6 @@ import { MarkdownEditor } from "@/components/markdown-editor.tsx";
 import welcomeMarkdownZh from "@/data/welcome-zh.md?raw";
 import welcomeMarkdownEn from "@/data/welcome-en.md?raw";
 import Toolbar from "@/components/toolbar/toolbar.tsx";
-import layoutStyle from "@/styles/layout.css?raw";
 import { ToolbarState } from "@/state/toolbarState";
 
 // Move marked configuration to a separate constant
@@ -46,7 +45,7 @@ const wrapWithContainer = (htmlString: string) => {
 
 export default function IndexPage() {
   const { i18n } = useTranslation();
-  const { selectedStyle } = ToolbarState.useContainer();
+  const { selectedStyle, containerStyle } = ToolbarState.useContainer();
 
   const [markdown, setMarkdown] = useState(welcomeMarkdownZh);
   const [isModified, setIsModified] = useState(false);
@@ -65,12 +64,12 @@ export default function IndexPage() {
       const articleStyle = loadCSS(selectedStyle) as string;
 
       setInlineStyledHTML(
-        inlineStyles(wrappedHTML, `${layoutStyle}\n${articleStyle}`),
+        inlineStyles(wrappedHTML, `${containerStyle}\n${articleStyle}`),
       );
     };
 
     parseMarkdown();
-  }, [markdown, selectedStyle]);
+  }, [markdown, selectedStyle, containerStyle]);
 
   const handleMarkdownChange = (newMarkdown: string) => {
     setMarkdown(newMarkdown);
