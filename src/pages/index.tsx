@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 import DefaultLayout from "@/layouts/default";
 import ResizableSplitPane from "@/components/resizable-split-pane";
 import inlineStyles from "@/lib/inline-styles";
-import { loadCSS, markdownStyles } from "@/config/post-styles.ts";
+import { loadCSS } from "@/config/post-styles.ts";
 import { replaceImgSrc } from "@/lib/image-store";
 import { TypewriterHero } from "@/components/typewriter-hero";
 import { MarkdownEditor } from "@/components/markdown-editor.tsx";
@@ -16,6 +16,7 @@ import welcomeMarkdownZh from "@/data/welcome-zh.md?raw";
 import welcomeMarkdownEn from "@/data/welcome-en.md?raw";
 import Toolbar from "@/components/toolbar/toolbar.tsx";
 import layoutStyle from "@/styles/layout.css?raw";
+import { ToolbarState } from "@/state/toolbarState";
 
 // Move marked configuration to a separate constant
 const markedInstance = new Marked(
@@ -45,14 +46,11 @@ const wrapWithContainer = (htmlString: string) => {
 
 export default function IndexPage() {
   const { i18n } = useTranslation();
+  const { selectedStyle } = ToolbarState.useContainer();
 
   const [markdown, setMarkdown] = useState(welcomeMarkdownZh);
   const [isModified, setIsModified] = useState(false);
-
   const [inlineStyledHTML, setInlineStyledHTML] = useState("");
-  const [selectedStyle, setSelectedStyle] = useState(markdownStyles[0].name);
-
-  // @ts-ignore
   const [showRenderedHTML, setShowRenderedHTML] = useState(true);
 
   useEffect(() => {
@@ -119,11 +117,7 @@ export default function IndexPage() {
   return (
     <DefaultLayout>
       <TypewriterHero />
-      <Toolbar
-        markdownStyles={markdownStyles}
-        selectedStyle={selectedStyle}
-        setSelectedStyle={setSelectedStyle}
-      />
+      <Toolbar />
       <ResizableSplitPane
         initialLeftWidth={40}
         leftPane={LeftContent}

@@ -6,19 +6,12 @@ import CopyButtonGroup from "./copy-button-group.tsx";
 import DownloadButtonGroup from "./download-button-group.tsx";
 
 import StyleSettingPopover from "@/components/toolbar/style-setting-popover.tsx";
+import { ToolbarState } from "@/state/toolbarState";
+import { markdownStyles } from "@/config/post-styles.ts";
 
-type ToolbarProps = {
-  selectedStyle: string;
-  setSelectedStyle: React.Dispatch<React.SetStateAction<string>>;
-  markdownStyles: { name: string }[];
-};
-
-const Toolbar: React.FC<ToolbarProps> = ({
-  selectedStyle,
-  setSelectedStyle,
-  markdownStyles,
-}) => {
+const Toolbar: React.FC = () => {
   const { t } = useTranslation();
+  const { selectedStyle, setSelectedStyle } = ToolbarState.useContainer();
 
   return (
     <div className="flex flex-col md:flex-row gap-4 items-center mb-4">
