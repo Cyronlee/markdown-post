@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
-import { Select, SelectItem } from "@nextui-org/select";
 import { Marked } from "marked";
 import { markedHighlight } from "marked-highlight";
-import markedKatex from "marked-katex-extension";
 import hljs from "highlight.js";
 import { useTranslation } from "react-i18next";
+import markedKatex from "marked-katex-extension";
 
 import DefaultLayout from "@/layouts/default";
 import ResizableSplitPane from "@/components/resizable-split-pane";
@@ -38,11 +37,8 @@ const markedInstance = new Marked(
 );
 
 // Helper functions
-const wrapWithContainer = (
-  htmlString: string,
-  layoutSetting: LayoutSetting,
-) => {
-  return `<div class="container-layout" style="margin: 0; padding: ${layoutSetting.containerPadding}px; background-color: ${layoutSetting.containerBgColor}">
+const wrapWithContainer = (htmlString: string) => {
+  return `<div class="container-layout" style="margin: 0; padding: 32px; background-color: #e5e5e5">
       <div class="article" style="max-width: 960px;margin: 0 auto;">${htmlString}</div>
     </div>`;
 };
@@ -52,8 +48,6 @@ export default function IndexPage() {
   const { selectedStyle, containerStyle } = ToolbarState.useContainer();
 
   const [markdown, setMarkdown] = useState(welcomeMarkdownZh);
-  const [layoutSetting, setLayoutSetting] =
-    useState<LayoutSetting>(defaultLayoutSetting);
   const [isModified, setIsModified] = useState(false);
   const [inlineStyledHTML, setInlineStyledHTML] = useState("");
   const [showRenderedHTML, setShowRenderedHTML] = useState(true);
