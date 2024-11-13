@@ -2,15 +2,22 @@ import React from "react";
 import { PopoverContent } from "@nextui-org/popover";
 import { Card } from "@nextui-org/card";
 import { Image } from "@nextui-org/image";
+import { Button } from "@nextui-org/button";
 
 import { ToolbarState } from "@/state/toolbarState.ts";
 
 export const StyleSettingPopoverContent = () => {
   const { containerStyle, setContainerStyle } = ToolbarState.useContainer();
+
   const backgroundSet = [
-    { src: "/background/tw-white.jpg", color: "#8cf395" },
-    { src: "/background/tw-green.jpg", color: "#cb2929" },
-    { src: "/background/tw-blue.jpg", color: "#0520d0" },
+    { src: "/background/marble.jpg", type: "card" },
+    { src: "/background/dark-blue.jpg", type: "card" },
+    { src: "/background/blue.jpg", type: "card" },
+    { src: "/background/yellow.jpg", type: "card" },
+    { src: "/background/gold.jpg", type: "card" },
+    { src: "/background/green.jpg", type: "card" },
+    { src: "/background/soft-green.jpg", type: "card" },
+    { type: "button" },
   ];
 
   return (
@@ -21,23 +28,36 @@ export const StyleSettingPopoverContent = () => {
             Layout Customizer
           </p>
           <p className="my-2">background</p>
-          <div className="flex gap-2">
-            {backgroundSet.map((item) => (
-              <Card key={item.src}>
-                <Image
-                  alt="Woman listing to music"
-                  className="object-cover"
-                  height={100}
-                  src={item.src}
-                  width={60}
-                  onClick={() => {
-                    setContainerStyle(
-                      `${containerStyle}\n.container-layout {background: ${item.color};}`,
-                    );
-                  }}
-                />
-              </Card>
-            ))}
+          <div className="grid grid-cols-8 gap-1 items-center">
+            {backgroundSet.map((item, index) => {
+              if (item.type === "card") {
+                return (
+                  <Card key={item.src}>
+                    <Image
+                      alt="Woman listing to music"
+                      className="object-cover w-full"
+                      height={80}
+                      src={item.src}
+                      onClick={() => {
+                        setContainerStyle(
+                          `${containerStyle}\n.container-layout {background: url(${item.src}) no-repeat center center; background-size: cover;}`,
+                        );
+                      }}
+                    />
+                  </Card>
+                );
+              } else {
+                return (
+                  <Button
+                    key={index}
+                    className="min-w-[38px]"
+                    style={{ height: "80px", borderRadius: "14px" }}
+                  >
+                    +
+                  </Button>
+                );
+              }
+            })}
           </div>
 
           {/*<div className="mt-4 flex flex-col gap-3 w-full">*/}
