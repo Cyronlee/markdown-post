@@ -42,5 +42,11 @@
     "successMessage": "PDF saved",
     "successDescription": "PDF has been successfully saved",
     "failedMessage": "Failed to download PDF"
+  },
+  "userDefined": {
+    "background": "Background",
+    "buttonName": "User Defined",
+    "layoutCustomizer": "Layout Customizer",
+    "containerPadding": "Container Padding"
   }
 }

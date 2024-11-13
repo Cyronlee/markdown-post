@@ -42,5 +42,11 @@
     "successMessage": "PDF已保存",
     "successDescription": "PDF已成功保存",
     "failedMessage": "下载PDF失败"
+  },
+  "userDefined": {
+    "background": "背景色",
+    "buttonName": "自定义",
+    "layoutCustomizer": "布局调整",
+    "containerPadding": "边距调整"
   }
 }

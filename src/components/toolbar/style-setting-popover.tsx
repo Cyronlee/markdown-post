@@ -2,6 +2,7 @@ import React from "react";
 import { Button, ButtonGroup } from "@nextui-org/button";
 import { Palette } from "lucide-react";
 import { Popover, PopoverTrigger } from "@nextui-org/popover";
+import { useTranslation } from "react-i18next";
 
 import { StyleSettingPopoverContent } from "@/components/toolbar/style-setting-popover-content.tsx";
 
@@ -14,6 +15,8 @@ export interface LayoutSetting {
 }
 
 const StyleSettingPopover = () => {
+  const { t } = useTranslation();
+
   return (
     <ButtonGroup variant="flat">
       <Popover
@@ -25,7 +28,7 @@ const StyleSettingPopover = () => {
         <PopoverTrigger>
           <Button className="h-[56px] w-[156px]">
             <Palette size={20} />
-            user-defined
+            {t(`userDefined.buttonName`)}
           </Button>
         </PopoverTrigger>
         <StyleSettingPopoverContent />

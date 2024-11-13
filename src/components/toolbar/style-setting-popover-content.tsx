@@ -5,6 +5,7 @@ import { Image } from "@nextui-org/image";
 import { Button } from "@nextui-org/button";
 import { TwitterPicker } from "react-color";
 import { Slider } from "@nextui-org/slider";
+import { useTranslation } from "react-i18next";
 
 import { ToolbarState } from "@/state/toolbarState.ts";
 import {
@@ -14,6 +15,7 @@ import {
 } from "@/utils/styletransfer.ts";
 
 export const StyleSettingPopoverContent = () => {
+  const { t } = useTranslation();
   const { containerStyle, setContainerStyle } = ToolbarState.useContainer();
 
   const backgroundSet = [
@@ -45,9 +47,9 @@ export const StyleSettingPopoverContent = () => {
       {(titleProps) => (
         <div className="px-1 py-2 w-full">
           <p className="text-small font-bold text-foreground" {...titleProps}>
-            Layout Customizer
+            {t(`userDefined.layoutCustomizer`)}
           </p>
-          <p className="my-3">Background</p>
+          <p className="my-3">{t(`userDefined.background`)}</p>
           <div className="grid grid-cols-8 gap-1 items-center">
             {backgroundSet.map((item, index) => {
               if (item.type === "card") {
@@ -101,7 +103,7 @@ export const StyleSettingPopoverContent = () => {
               className="max-w-md"
               defaultValue={Number(newStyle["padding"].slice(0, -2)) || 32}
               getValue={(donuts) => `${donuts}px`}
-              label="Container Padding"
+              label={t(`userDefined.containerPadding`)}
               maxValue={64}
               minValue={24}
               step={4}
