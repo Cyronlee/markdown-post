@@ -43,6 +43,7 @@
     "marked-highlight": "^2.2.0",
     "marked-katex-extension": "^5.1.2",
     "react": "18.3.1",
+    "react-color": "^2.19.3",
     "react-dom": "18.3.1",
     "react-i18next": "^15.1.0",
     "react-router-dom": "6.23.0",
@@ -54,6 +55,7 @@
   "devDependencies": {
     "@types/node": "20.5.7",
     "@types/react": "18.3.3",
+    "@types/react-color": "^3.0.12",
     "@types/react-dom": "18.3.0",
     "@typescript-eslint/eslint-plugin": "8.11.0",
     "@typescript-eslint/parser": "8.11.0",

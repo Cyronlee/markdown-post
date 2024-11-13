@@ -1,14 +1,16 @@
 import React from "react";
-import { PopoverContent } from "@nextui-org/popover";
+import { Popover, PopoverContent, PopoverTrigger } from "@nextui-org/popover";
 import { Card } from "@nextui-org/card";
 import { Image } from "@nextui-org/image";
 import { Button } from "@nextui-org/button";
+import { TwitterPicker } from "react-color";
 
 import { ToolbarState } from "@/state/toolbarState.ts";
 
 export const StyleSettingPopoverContent = () => {
   const { containerStyle, setContainerStyle } = ToolbarState.useContainer();
-
+  const [backgroundColor, setBackgroundColor] =
+    React.useState<string>("#e5e5e5");
   const backgroundSet = [
     { src: "/background/marble.jpg", type: "card" },
     { src: "/background/dark-blue.jpg", type: "card" },
@@ -48,18 +50,31 @@ export const StyleSettingPopoverContent = () => {
                 );
               } else {
                 return (
-                  <Button
-                    key={index}
-                    className="min-w-[38px]"
-                    style={{ height: "80px", borderRadius: "14px" }}
-                  >
-                    +
-                  </Button>
+                  <Popover key={index}>
+                    <PopoverTrigger>
+                      <Button
+                        className="min-w-[38px]"
+                        style={{ height: "80px", borderRadius: "14px" }}
+                      >
+                        +
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent>
+                      <TwitterPicker
+                        color={backgroundColor}
+                        onChange={(color) => {
+                          setBackgroundColor(color.hex);
+                          setContainerStyle(
+                            `${containerStyle}\n.container-layout {background: ${color.hex};}`,
+                          );
+                        }}
+                      />
+                    </PopoverContent>
+                  </Popover>
                 );
               }
             })}
           </div>
-
           {/*<div className="mt-4 flex flex-col gap-3 w-full">*/}
           {/*  <Slider*/}
           {/*    className="max-w-md"*/}
