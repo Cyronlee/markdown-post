@@ -3,7 +3,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@nextui-org/popover";
 import { ChromePicker } from "react-color";
 import { Slider } from "@nextui-org/slider";
 import { useTranslation } from "react-i18next";
-import { PaintBucket } from "lucide-react";
+import { Input } from "@nextui-org/input";
 
 import { ToolbarState } from "@/state/toolbarState.ts";
 import {
@@ -12,20 +12,42 @@ import {
   objectToStyleString,
 } from "@/utils/styletransfer.ts";
 
+const ColorBox = ({
+  newStyle,
+  setNewStyle,
+}: {
+  newStyle: Record<string, string>;
+  setNewStyle: (newStyle: Record<string, string>) => void;
+}) => {
+  return (
+    <Popover showArrow offset={10} placement="bottom" shouldBlockScroll={true}>
+      <PopoverTrigger>
+        <div
+          className={`size-6 rounded-full flex-shrink-0`}
+          style={{ backgroundColor: newStyle["background-color"] }}
+        />
+      </PopoverTrigger>
+      <PopoverContent className="p-0">
+        <ChromePicker
+          color={newStyle["background-color"]}
+          disableAlpha={true}
+          onChange={(color) => {
+            setNewStyle({
+              ...newStyle,
+              ["background-color"]: `${color.hex}`,
+              ["background"]: `${color.hex}`,
+            });
+          }}
+        />
+      </PopoverContent>
+    </Popover>
+  );
+};
+
 export const StyleSettingPopoverContent = () => {
   const { t } = useTranslation();
   const { containerStyle, setContainerStyle } = ToolbarState.useContainer();
 
-  const backgroundSet = [
-    { src: "/background/marble.jpg", type: "card" },
-    { src: "/background/dark-blue.jpg", type: "card" },
-    { src: "/background/blue.jpg", type: "card" },
-    { src: "/background/yellow.jpg", type: "card" },
-    { src: "/background/gold.jpg", type: "card" },
-    { src: "/background/green.jpg", type: "card" },
-    { src: "/background/soft-green.jpg", type: "card" },
-    { type: "button" },
-  ];
   const [newStyle, setNewStyle] = useState<Record<string, string>>(
     cssToRecord(getUnnestStyle(containerStyle)),
   );
@@ -44,58 +66,27 @@ export const StyleSettingPopoverContent = () => {
     <PopoverContent className="w-[360px]">
       {(titleProps) => (
         <div className="px-1 py-2 w-full">
-          <p className="text-small font-bold text-foreground" {...titleProps}>
+          <p
+            className="text-small font-bold text-foreground pb-3"
+            {...titleProps}
+          >
             {t(`customize.layoutCustomizer`)}
           </p>
-          <div className="flex gap-2 my-3">
-            <span>{t(`customize.containerBackground`)}</span>
-            <Popover>
-              <PopoverTrigger>
-                <PaintBucket />
-              </PopoverTrigger>
-              <PopoverContent>
-                <ChromePicker
-                  color={newStyle["background-color"]}
-                  disableAlpha={true}
-                  onChange={(color) => {
-                    setNewStyle({
-                      ...newStyle,
-                      ["background-color"]: `${color.hex}`,
-                      ["background"]: `${color.hex}`,
-                    });
-                  }}
-                />
-              </PopoverContent>
-            </Popover>
-          </div>
-          {/*<div className="grid grid-cols-8 gap-1 items-center">*/}
-          {/*  {backgroundSet.map((item, index) => {*/}
-          {/*    if (item.type === "card") {*/}
-          {/*      return (*/}
-          {/*        <Card key={item.src}>*/}
-          {/*          <Image*/}
-          {/*            alt="Woman listing to music"*/}
-          {/*            className="object-cover w-full"*/}
-          {/*            height={80}*/}
-          {/*            src={item.src}*/}
-          {/*            onClick={() => {*/}
-          {/*              setNewStyle({*/}
-          {/*                ...newStyle,*/}
-          {/*                ["background"]: `url(${item.src}) no-repeat center center;`,*/}
-          {/*                ["background-size"]: "cover",*/}
-          {/*              });*/}
-          {/*            }}*/}
-          {/*          />*/}
-          {/*        </Card>*/}
-          {/*      );*/}
-          {/*    } else {*/}
-          {/*      return (*/}
-
-          {/*      );*/}
-          {/*    }*/}
-          {/*  })}*/}
-          {/*</div>*/}
-          <div />
+          <Input
+            label={t("customize.containerBackground")}
+            labelPlacement="outside"
+            startContent={
+              <ColorBox newStyle={newStyle} setNewStyle={setNewStyle} />
+            }
+            value={newStyle["background-color"]}
+            onChange={(e) => {
+              setNewStyle({
+                ...newStyle,
+                ["background-color"]: `${e.target.value}`,
+                ["background"]: `${e.target.value}`,
+              });
+            }}
+          />
           <div className="mt-4 flex flex-col gap-3 w-full">
             <Slider
               className="max-w-md"
