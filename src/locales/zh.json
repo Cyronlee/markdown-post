@@ -44,7 +44,7 @@
     "failedMessage": "下载PDF失败"
   },
   "customize": {
-    "background": "背景色",
+    "containerBackground": "背景色",
     "buttonName": "自定义",
     "layoutCustomizer": "布局调整",
     "containerPadding": "边距调整"
