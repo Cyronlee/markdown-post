@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Popover, PopoverContent, PopoverTrigger } from "@nextui-org/popover";
-import { Card } from "@nextui-org/card";
-import { Image } from "@nextui-org/image";
-import { Button } from "@nextui-org/button";
-import { TwitterPicker } from "react-color";
+import { ChromePicker } from "react-color";
 import { Slider } from "@nextui-org/slider";
 import { useTranslation } from "react-i18next";
+import { PaintBucket } from "lucide-react";
 
 import { ToolbarState } from "@/state/toolbarState.ts";
 import {
@@ -47,65 +45,65 @@ export const StyleSettingPopoverContent = () => {
       {(titleProps) => (
         <div className="px-1 py-2 w-full">
           <p className="text-small font-bold text-foreground" {...titleProps}>
-            {t(`userDefined.layoutCustomizer`)}
+            {t(`customize.layoutCustomizer`)}
           </p>
-          <p className="my-3">{t(`userDefined.background`)}</p>
-          <div className="grid grid-cols-8 gap-1 items-center">
-            {backgroundSet.map((item, index) => {
-              if (item.type === "card") {
-                return (
-                  <Card key={item.src}>
-                    <Image
-                      alt="Woman listing to music"
-                      className="object-cover w-full"
-                      height={80}
-                      src={item.src}
-                      onClick={() => {
-                        setNewStyle({
-                          ...newStyle,
-                          ["background"]: `url(${item.src}) no-repeat center center;`,
-                          ["background-size"]: "cover",
-                        });
-                      }}
-                    />
-                  </Card>
-                );
-              } else {
-                return (
-                  <Popover key={index}>
-                    <PopoverTrigger>
-                      <Button
-                        className="min-w-[38px]"
-                        style={{ height: "80px", borderRadius: "14px" }}
-                      >
-                        +
-                      </Button>
-                    </PopoverTrigger>
-                    <PopoverContent>
-                      <TwitterPicker
-                        color={newStyle["background-color"]}
-                        onChange={(color) => {
-                          setNewStyle({
-                            ...newStyle,
-                            ["background-color"]: `${color.hex}`,
-                            ["background"]: `${color.hex}`,
-                          });
-                        }}
-                      />
-                    </PopoverContent>
-                  </Popover>
-                );
-              }
-            })}
+          <div className="flex gap-2 my-3">
+            <span>{t(`customize.containerBackground`)}</span>
+            <Popover>
+              <PopoverTrigger>
+                <PaintBucket />
+              </PopoverTrigger>
+              <PopoverContent>
+                <ChromePicker
+                  color={newStyle["background-color"]}
+                  disableAlpha={true}
+                  onChange={(color) => {
+                    setNewStyle({
+                      ...newStyle,
+                      ["background-color"]: `${color.hex}`,
+                      ["background"]: `${color.hex}`,
+                    });
+                  }}
+                />
+              </PopoverContent>
+            </Popover>
           </div>
+          {/*<div className="grid grid-cols-8 gap-1 items-center">*/}
+          {/*  {backgroundSet.map((item, index) => {*/}
+          {/*    if (item.type === "card") {*/}
+          {/*      return (*/}
+          {/*        <Card key={item.src}>*/}
+          {/*          <Image*/}
+          {/*            alt="Woman listing to music"*/}
+          {/*            className="object-cover w-full"*/}
+          {/*            height={80}*/}
+          {/*            src={item.src}*/}
+          {/*            onClick={() => {*/}
+          {/*              setNewStyle({*/}
+          {/*                ...newStyle,*/}
+          {/*                ["background"]: `url(${item.src}) no-repeat center center;`,*/}
+          {/*                ["background-size"]: "cover",*/}
+          {/*              });*/}
+          {/*            }}*/}
+          {/*          />*/}
+          {/*        </Card>*/}
+          {/*      );*/}
+          {/*    } else {*/}
+          {/*      return (*/}
+
+          {/*      );*/}
+          {/*    }*/}
+          {/*  })}*/}
+          {/*</div>*/}
+          <div />
           <div className="mt-4 flex flex-col gap-3 w-full">
             <Slider
               className="max-w-md"
               defaultValue={Number(newStyle["padding"].slice(0, -2)) || 32}
               getValue={(donuts) => `${donuts}px`}
-              label={t(`userDefined.containerPadding`)}
+              label={t(`customize.containerPadding`)}
               maxValue={64}
-              minValue={24}
+              minValue={16}
               step={4}
               onChange={(value) => {
                 setNewStyle({

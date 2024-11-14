@@ -28,7 +28,7 @@ const StyleSettingPopover = () => {
         <PopoverTrigger>
           <Button className="h-[56px] w-[156px]">
             <Palette size={20} />
-            {t(`userDefined.buttonName`)}
+            {t(`customize.buttonName`)}
           </Button>
         </PopoverTrigger>
         <StyleSettingPopoverContent />

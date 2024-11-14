@@ -43,7 +43,7 @@
     "successDescription": "PDF已成功保存",
     "failedMessage": "下载PDF失败"
   },
-  "userDefined": {
+  "customize": {
     "background": "背景色",
     "buttonName": "自定义",
     "layoutCustomizer": "布局调整",
