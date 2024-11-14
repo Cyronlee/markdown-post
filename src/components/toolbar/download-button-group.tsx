@@ -2,9 +2,9 @@ import React from "react";
 import { Button, ButtonGroup } from "@nextui-org/button";
 import {
   Dropdown,
-  DropdownTrigger,
-  DropdownMenu,
   DropdownItem,
+  DropdownMenu,
+  DropdownTrigger,
 } from "@nextui-org/dropdown";
 import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
@@ -14,13 +14,7 @@ import { Download } from "lucide-react";
 import { ChevronDownIcon } from "@/components/icons.tsx";
 import { isSafari } from "@/lib/is-safari.ts";
 
-interface DownloadButtonGroupProps {
-  fullWidth?: boolean;
-}
-
-export default function DownloadButtonGroup({
-  fullWidth,
-}: DownloadButtonGroupProps) {
+export default function DownloadButtonGroup() {
   const { t } = useTranslation();
   const [selectedOption, setSelectedOption] = React.useState<any>(
     new Set(["image"]),
@@ -66,6 +60,7 @@ export default function DownloadButtonGroup({
         const dataUrl = await htmlToImage.toPng(element);
 
         const link = document.createElement("a");
+
         link.download = "markdown-post.png";
         link.href = dataUrl;
         link.click();
@@ -82,8 +77,8 @@ export default function DownloadButtonGroup({
   };
 
   return (
-    <ButtonGroup fullWidth={fullWidth} variant="flat">
-      <Button className="h-[56px]" onClick={handleDownloadButtonClick}>
+    <ButtonGroup className="w-full" variant="flat">
+      <Button className="h-[56px] w-full" onClick={handleDownloadButtonClick}>
         <Download size={20} />
         {labelsMap[selectedOptionValue]}
       </Button>

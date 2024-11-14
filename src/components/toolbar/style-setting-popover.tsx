@@ -18,7 +18,7 @@ const StyleSettingPopover = () => {
   const { t } = useTranslation();
 
   return (
-    <ButtonGroup variant="flat">
+    <ButtonGroup className="w-full" variant="flat">
       <Popover
         showArrow
         offset={10}
@@ -26,7 +26,7 @@ const StyleSettingPopover = () => {
         shouldBlockScroll={true}
       >
         <PopoverTrigger>
-          <Button className="h-[56px] w-[156px]">
+          <Button className="h-[56px] w-full">
             <Palette size={20} />
             {t(`customize.buttonName`)}
           </Button>

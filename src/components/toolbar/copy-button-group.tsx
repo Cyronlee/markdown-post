@@ -15,11 +15,7 @@ import { ChevronDownIcon } from "@/components/icons.tsx";
 import { copyHtmlWithStyle } from "@/lib/copy-html.tsx";
 import { isSafari } from "@/lib/is-safari.ts";
 
-interface CopyButtonGroupProps {
-  fullWidth?: boolean;
-}
-
-export default function CopyButtonGroup({ fullWidth }: CopyButtonGroupProps) {
+export default function CopyButtonGroup() {
   const { t } = useTranslation();
   const [selectedOption, setSelectedOption] = React.useState<any>(
     new Set(["email"]),
@@ -103,8 +99,8 @@ export default function CopyButtonGroup({ fullWidth }: CopyButtonGroupProps) {
   };
 
   return (
-    <ButtonGroup fullWidth={fullWidth} variant="flat">
-      <Button className="h-[56px]" onClick={handleCopyButtonClick}>
+    <ButtonGroup className="w-full" variant="flat">
+      <Button className="h-[56px] w-full" onClick={handleCopyButtonClick}>
         <Copy size={20} />
         {labelsMap[selectedOptionValue]}
       </Button>

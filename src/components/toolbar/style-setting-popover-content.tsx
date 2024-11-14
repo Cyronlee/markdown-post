@@ -78,7 +78,9 @@ export const StyleSettingPopoverContent = () => {
             label={t("customize.containerBackground")}
             labelPlacement="outside"
             startContent={
-              <ColorBox newStyle={newStyle} setNewStyle={setNewStyle} />
+              <div style={{ cursor: "pointer" }}>
+                <ColorBox newStyle={newStyle} setNewStyle={setNewStyle} />
+              </div>
             }
             value={newStyle["background-color"]}
             onChange={(e) => {
