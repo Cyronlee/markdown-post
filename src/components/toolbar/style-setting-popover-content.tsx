@@ -8,7 +8,7 @@ import { Input } from "@nextui-org/input";
 import { ToolbarState } from "@/state/toolbarState.ts";
 import {
   cssToRecord,
-  getUnnestStyle,
+  extractContainerLayoutContent,
   objectToStyleString,
 } from "@/utils/styletransfer.ts";
 
@@ -46,19 +46,21 @@ const ColorBox = ({
 
 export const StyleSettingPopoverContent = () => {
   const { t } = useTranslation();
-  const { containerStyle, setContainerStyle } = ToolbarState.useContainer();
+
+  const { articleStyle, setArticleStyle } = ToolbarState.useContainer();
 
   const [newStyle, setNewStyle] = useState<Record<string, string>>(
-    cssToRecord(getUnnestStyle(containerStyle)),
+    cssToRecord(extractContainerLayoutContent(articleStyle)),
   );
 
   useEffect(() => {
     if (objectToStyleString(newStyle)) {
-      setContainerStyle(
-        `.container-layout{
-        ${objectToStyleString(newStyle)}
-        }`,
-      );
+      setArticleStyle((prev) => {
+        return prev.replace(
+          extractContainerLayoutContent(prev),
+          objectToStyleString(newStyle),
+        );
+      });
     }
   }, [newStyle]);
 

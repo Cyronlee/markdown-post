@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Select, SelectItem } from "@nextui-org/select";
 import { useTranslation } from "react-i18next";
 
@@ -7,11 +7,16 @@ import DownloadButtonGroup from "./download-button-group.tsx";
 
 import StyleSettingPopover from "@/components/toolbar/style-setting-popover.tsx";
 import { ToolbarState } from "@/state/toolbarState";
-import { markdownStyles } from "@/config/post-styles.ts";
+import { loadCSS, markdownStyles } from "@/config/post-styles.ts";
 
 const Toolbar: React.FC = () => {
   const { t } = useTranslation();
-  const { selectedStyle, setSelectedStyle } = ToolbarState.useContainer();
+  const { selectedStyle, setSelectedStyle, setArticleStyle } =
+    ToolbarState.useContainer();
+
+  useEffect(() => {
+    setArticleStyle(loadCSS(selectedStyle) as string);
+  }, [selectedStyle]);
 
   return (
     <div className="flex flex-col md:flex-row gap-4 items-center mb-4">

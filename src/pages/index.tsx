@@ -8,7 +8,6 @@ import markedKatex from "marked-katex-extension";
 import DefaultLayout from "@/layouts/default";
 import ResizableSplitPane from "@/components/resizable-split-pane";
 import inlineStyles from "@/lib/inline-styles";
-import { loadCSS } from "@/config/post-styles.ts";
 import { replaceImgSrc } from "@/lib/image-store";
 import { TypewriterHero } from "@/components/typewriter-hero";
 import { MarkdownEditor } from "@/components/markdown-editor.tsx";
@@ -38,14 +37,14 @@ const markedInstance = new Marked(
 
 // Helper functions
 const wrapWithContainer = (htmlString: string) => {
-  return `<div class="container-layout" style="margin: 0; padding: 32px; background-color: #e5e5e5">
+  return `<div class="container-layout" style="margin: 0;">
       <div class="article" style="max-width: 960px;margin: 0 auto;">${htmlString}</div>
     </div>`;
 };
 
 export default function IndexPage() {
   const { i18n } = useTranslation();
-  const { selectedStyle, containerStyle } = ToolbarState.useContainer();
+  const { articleStyle } = ToolbarState.useContainer();
 
   const [markdown, setMarkdown] = useState(welcomeMarkdownZh);
   const [isModified, setIsModified] = useState(false);
@@ -61,15 +60,12 @@ export default function IndexPage() {
     const parseMarkdown = async () => {
       const parsedHTML = await markedInstance.parse(markdown);
       const wrappedHTML = wrapWithContainer(replaceImgSrc(parsedHTML));
-      const articleStyle = loadCSS(selectedStyle) as string;
 
-      setInlineStyledHTML(
-        inlineStyles(wrappedHTML, `${containerStyle}\n${articleStyle}`),
-      );
+      setInlineStyledHTML(inlineStyles(wrappedHTML, articleStyle));
     };
 
     parseMarkdown();
-  }, [markdown, selectedStyle, containerStyle]);
+  }, [markdown, articleStyle]);
 
   const handleMarkdownChange = (newMarkdown: string) => {
     setMarkdown(newMarkdown);

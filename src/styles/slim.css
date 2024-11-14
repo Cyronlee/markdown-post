@@ -1,3 +1,8 @@
+.container-layout{
+  background-color: #000000;
+  padding: 24px;
+}
+
 /* 文章内容设置 */
 .article {
   padding: 2em 60px;

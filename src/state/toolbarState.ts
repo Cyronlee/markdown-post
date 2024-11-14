@@ -1,16 +1,23 @@
 import { useState } from "react";
 import { createContainer } from "unstated-next";
 
-import { markdownStyles } from "@/config/post-styles.ts";
-import layoutStyle from "@/styles/layout.css?raw";
+import { loadCSS, markdownStyles } from "@/config/post-styles.ts";
+
 const useToolbarState = () => {
   const [selectedStyle, setSelectedStyle] = useState<string>(
     markdownStyles[0].name,
   );
 
-  const [containerStyle, setContainerStyle] = useState<string>(layoutStyle);
+  const [articleStyle, setArticleStyle] = useState<string>(
+    loadCSS(selectedStyle) as string,
+  );
 
-  return { selectedStyle, setSelectedStyle, containerStyle, setContainerStyle };
+  return {
+    selectedStyle,
+    setSelectedStyle,
+    articleStyle,
+    setArticleStyle,
+  };
 };
 
 export const ToolbarState = createContainer(useToolbarState);

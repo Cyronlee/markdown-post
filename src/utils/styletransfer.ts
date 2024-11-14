@@ -18,5 +18,8 @@ export const cssToRecord = (cssString: string): Record<string, string> => {
   return styles;
 };
 
-export const getUnnestStyle = (containerStyle: string) =>
-  containerStyle.replace(/.*\.(\w+)-(\w+)\s*\{([^}]+)}.*/, "$3");
+export const extractContainerLayoutContent = (cssString: string): string => {
+  const match = cssString.match(/\.container-layout\s*\{([^}]+)}/);
+
+  return match ? match[1].trim() : "";
+};
