@@ -1,10 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Marked } from "marked";
 import { markedHighlight } from "marked-highlight";
 import hljs from "highlight.js";
 import { useTranslation } from "react-i18next";
 import markedKatex from "marked-katex-extension";
-
 import DefaultLayout from "@/layouts/default";
 import ResizableSplitPane from "@/components/resizable-split-pane";
 import inlineStyles from "@/lib/inline-styles";
@@ -15,6 +14,7 @@ import welcomeMarkdownZh from "@/data/welcome-zh.md?raw";
 import welcomeMarkdownEn from "@/data/welcome-en.md?raw";
 import Toolbar from "@/components/toolbar/toolbar.tsx";
 import { ToolbarState } from "@/state/toolbarState";
+import { markedMermaid, renderMermaidDiagrams } from "@/lib/marked-mermaid-extension";
 
 // Move marked configuration to a separate constant
 const markedInstance = new Marked(
@@ -23,13 +23,13 @@ const markedInstance = new Marked(
     langPrefix: "hljs language-",
     highlight(code, lang) {
       const language = hljs.getLanguage(lang) ? lang : "plaintext";
-
       return hljs.highlight(code, { language }).value;
     },
   }),
   markedKatex({
     throwOnError: false,
   }),
+  markedMermaid(),
   {
     breaks: true,
   },
@@ -45,11 +45,11 @@ const wrapWithContainer = (htmlString: string) => {
 export default function IndexPage() {
   const { i18n } = useTranslation();
   const { articleStyle } = ToolbarState.useContainer();
-
   const [markdown, setMarkdown] = useState(welcomeMarkdownZh);
   const [isModified, setIsModified] = useState(false);
   const [inlineStyledHTML, setInlineStyledHTML] = useState("");
   const [showRenderedHTML, setShowRenderedHTML] = useState(true);
+  const contentRenderedRef = useRef(false);
 
   useEffect(() => {
     setMarkdown(i18n.language === "zh" ? welcomeMarkdownZh : welcomeMarkdownEn);
@@ -60,12 +60,18 @@ export default function IndexPage() {
     const parseMarkdown = async () => {
       const parsedHTML = await markedInstance.parse(markdown);
       const wrappedHTML = wrapWithContainer(replaceImgSrc(parsedHTML));
-
       setInlineStyledHTML(inlineStyles(wrappedHTML, articleStyle));
+      contentRenderedRef.current = true;
     };
-
     parseMarkdown();
   }, [markdown, articleStyle]);
+
+  useEffect(() => {
+    if (contentRenderedRef.current && showRenderedHTML) {
+      renderMermaidDiagrams();
+      contentRenderedRef.current = false;
+    }
+  }, [inlineStyledHTML, showRenderedHTML]);
 
   const handleMarkdownChange = (newMarkdown: string) => {
     setMarkdown(newMarkdown);
@@ -77,11 +83,9 @@ export default function IndexPage() {
       event.preventDefault();
       event.returnValue = "";
     };
-
     if (isModified) {
       window.addEventListener("beforeunload", handleBeforeUnload);
     }
-
     return () => {
       window.removeEventListener("beforeunload", handleBeforeUnload);
     };

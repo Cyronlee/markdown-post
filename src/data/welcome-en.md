@@ -28,11 +28,30 @@ Just focus on creating your content, **MarkdownPost** will convert it to `email`
 - 💡 **Simple to Use:** Real-time preview, what you see is what you get.
 - 🏞️ **Image Upload:** Paste images, automatically generate image links.
 - 🧮 **Math Formula:** Support for $\LaTeX$ math formula.
+- 📊 **Data Visualization:** Create beautiful flowcharts, sequence diagrams, and more with Mermaid syntax, making your data more vivid.
 - 🎨 **Multiple Themes:** Continuously updated to meet different layout needs.
 - 📧 **Quick Sharing:** One-click copy, ready to publish on multiple platforms.
 - 📄 **Auto-Adapt:** Adapts to email window widths for a more attractive display.
 - 🔒 **Data Security:** Text and images are processed entirely in the browser, not uploaded to servers.
 - 🌟 **Free & Open Source:** Completely free to use, community contributions welcome.
+
+```mermaid
+flowchart LR
+    A[Write Markdown] -->|Real-time| B[Preview]
+    B --> C{Export Options}
+    C -->|Social Media| D[Twitter/LinkedIn]
+    C -->|Document| E[PDF]
+    C -->|Web| F[HTML]
+    C -->|Email| G[Newsletter]
+    
+    style A fill:#d8dee9,stroke:#3b4252,stroke-width:2px
+    style B fill:#81a1c1,stroke:#3b4252,stroke-width:2px
+    style C fill:#d8dee9,stroke:#3b4252,stroke-width:2px
+    style D fill:#d8dee9,stroke:#3b4252,stroke-width:2px
+    style E fill:#d8dee9,stroke:#3b4252,stroke-width:2px
+    style F fill:#d8dee9,stroke:#3b4252,stroke-width:2px
+    style G fill:#d8dee9,stroke:#3b4252,stroke-width:2px
+```
 
 ## Feedback
 
