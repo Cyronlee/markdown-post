@@ -43,12 +43,29 @@ export default function CopyButtonGroup() {
 
   const handleCopyButtonClick = () => {
     if (selectedOption.has("email")) {
-      copyHtmlWithStyle("markdown-body");
-      toast.success(t("copyEmail.successMessage"), {
-        description: t("copyEmail.successDescription"),
-        duration: 4000,
+      // Rasterising mermaid diagrams (when present) is async. We show a
+      // single loading toast and replace it with success/error once the
+      // copy resolves, so the UI never gets stuck on "processing".
+      const loadingId = toast.loading(t("commonToast.processing"), {
         position: "top-center",
       });
+
+      copyHtmlWithStyle("markdown-body")
+        .then(() => {
+          toast.success(t("copyEmail.successMessage"), {
+            id: loadingId,
+            description: t("copyEmail.successDescription"),
+            duration: 4000,
+            position: "top-center",
+          });
+        })
+        .catch((err) => {
+          console.error("Failed to copy email HTML:", err);
+          toast.error(t("copyEmail.failedMessage"), {
+            id: loadingId,
+            position: "top-center",
+          });
+        });
     } else if (selectedOption.has("image")) {
       const element = document.getElementById("markdown-body");
 
