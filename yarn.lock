@@ -4815,6 +4815,11 @@ lucide-react@^0.454.0:
   resolved "https://registry.yarnpkg.com/lucide-react/-/lucide-react-0.454.0.tgz#a81b9c482018720f07ead0503ae502d94d528444"
   integrity sha512-hw7zMDwykCLnEzgncEEjHeA6+45aeEzRYuKHuyRSOPkhko+J3ySGjGIzu+mmMfDFG1vazHepMaYFYHbTFAZAAQ==
 
+marked-footnote@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/marked-footnote/-/marked-footnote-1.4.0.tgz#b08e6145634fd85e4965863607d4af35c82f19d1"
+  integrity sha512-fZTxAhI1TcLEs5UOjCfYfTHpyKGaWQevbxaGTEA68B51l7i87SctPFtHETYqPkEN0ka5opvy4Dy1l/yXVC+hmg==
+
 marked-highlight@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/marked-highlight/-/marked-highlight-2.2.0.tgz#94d04da1a03abc36afbe4021294de0e4d4907636"

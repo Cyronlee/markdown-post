@@ -1,0 +1,52 @@
+/* GFM footnotes.
+ *
+ * Keep selectors simple so they survive `inline-styles` (no nested CSS).
+ * Do not use ::before / ::after — Gmail strips pseudo-elements.
+ * Square-bracket markers ([1]) are emitted in HTML via marked-footnote
+ * `refMarkers: true`.
+ */
+
+sup a[data-footnote-ref] {
+  font-size: 0.75em;
+  line-height: 0;
+  vertical-align: super;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.footnotes {
+  margin-top: 2em;
+  padding-top: 0.5em;
+  font-size: 0.85em;
+  color: #57606a;
+}
+
+.footnotes-title {
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  padding-bottom: 0;
+  border-bottom: none;
+  color: #57606a;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.footnotes ol {
+  padding-left: 1.5em;
+  margin-bottom: 0;
+}
+
+.footnotes li {
+  margin-bottom: 0.4em;
+}
+
+.footnotes p {
+  margin-bottom: 0.4em;
+}
+
+a[data-footnote-backref] {
+  text-decoration: none;
+  margin-left: 0.25em;
+}
