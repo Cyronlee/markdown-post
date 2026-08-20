@@ -28,6 +28,7 @@ Just focus on creating your content, **MarkdownPost** will convert it to `email`
 - 💡 **Simple to Use:** Real-time preview, what you see is what you get.
 - 🏞️ **Image Upload:** Paste images, automatically generate image links.
 - 🧮 **Math Formula:** Support for $\LaTeX$ math formula.
+- 📌 **Footnotes:** Support for GFM footnote syntax, like this[^1].
 - 📊 **Data Visualization:** Create beautiful flowcharts, sequence diagrams, and more with Mermaid syntax, making your data more vivid.
 - 🎨 **Multiple Themes:** Continuously updated to meet different layout needs.
 - 📧 **Quick Sharing:** One-click copy, ready to publish on multiple platforms.
@@ -57,3 +58,5 @@ flowchart LR
 
 Feel free to share your ideas and suggestions on [Github Issue](https://github.com/Cyronlee/markdown-post/issues). Your
 feedback will make **MarkdownPost** better!
+
+[^1]: Footnotes render at the bottom of the article. Click the number to jump.

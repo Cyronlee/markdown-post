@@ -16,6 +16,7 @@ Website：[https://mdpost.vercel.app](https://mdpost.vercel.app)
 - 💡 **Simple to Use:** Real-time preview, what you see is what you get.
 - 🏞️ **Image Upload:** Paste images, automatically generate image links.
 - 🧮 **Math Formula:** Support for $\LaTeX$ math formula.
+- 📌 **Footnotes:** Support for GFM footnote syntax (`[^1]`).
 - 🎨 **Multiple Themes:** Continuously updated to meet different layout needs.
 - 📧 **Quick Sharing:** One-click copy, ready to publish on multiple platforms.
 - 📄 **Auto-Adapt:** Adapts to email window widths for a more attractive display.

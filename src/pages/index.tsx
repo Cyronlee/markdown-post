@@ -4,6 +4,7 @@ import { markedHighlight } from "marked-highlight";
 import hljs from "highlight.js";
 import { useTranslation } from "react-i18next";
 import markedKatex from "marked-katex-extension";
+import markedFootnote from "marked-footnote";
 import DefaultLayout from "@/layouts/default";
 import ResizableSplitPane from "@/components/resizable-split-pane";
 import inlineStyles from "@/lib/inline-styles";
@@ -30,6 +31,12 @@ const markedInstance = new Marked(
     throwOnError: false,
   }),
   markedMermaid(),
+  markedFootnote({
+    // Put [1] in the HTML so Gmail still shows markers (it strips ::before/::after).
+    refMarkers: true,
+    footnoteDivider: true,
+    headingClass: "footnotes-title",
+  }),
   {
     breaks: true,
   },
